@@ -83,7 +83,9 @@
     }
 
     .app-badge svg {
-      width: 14px; height: 14px; fill: currentColor;
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
     }
 
     h1 {
@@ -122,7 +124,9 @@
       animation: fadeIn 0.5s ease both;
     }
 
-    .policy-item:last-of-type { border-bottom: none; }
+    .policy-item:last-of-type {
+      border-bottom: none;
+    }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateX(-8px); }
@@ -137,7 +141,8 @@
 
     .icon-wrap {
       flex-shrink: 0;
-      width: 38px; height: 38px;
+      width: 38px;
+      height: 38px;
       border-radius: 10px;
       background: var(--accent-light);
       display: flex;
@@ -147,7 +152,8 @@
     }
 
     .icon-wrap svg {
-      width: 18px; height: 18px;
+      width: 18px;
+      height: 18px;
       stroke: var(--accent);
       fill: none;
       stroke-width: 1.8;
@@ -173,8 +179,13 @@
       gap: 16px;
     }
 
-    .contact-block .icon-wrap { background: var(--accent); }
-    .contact-block .icon-wrap svg { stroke: #fff; }
+    .contact-block .icon-wrap {
+      background: var(--accent);
+    }
+
+    .contact-block .icon-wrap svg {
+      stroke: #fff;
+    }
 
     .contact-label {
       font-size: 12px;
@@ -192,7 +203,9 @@
       font-weight: 500;
     }
 
-    .contact-block a:hover { text-decoration: underline; }
+    .contact-block a:hover {
+      text-decoration: underline;
+    }
 
     footer {
       margin-top: 32px;
@@ -204,7 +217,9 @@
     }
 
     @media (max-width: 520px) {
-      .card { padding: 36px 28px 40px; }
+      .card {
+        padding: 36px 28px 40px;
+      }
     }
   </style>
 </head>
@@ -218,7 +233,7 @@
   </div>
 
   <h1>Your data, your <em>control.</em></h1>
-  <p class="subtitle">Last updated · March 2026</p>
+  <p class="subtitle">Last updated · April 2026</p>
 
   <div class="divider"></div>
 
@@ -226,35 +241,35 @@
     <div class="icon-wrap">
       <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
     </div>
-    <p class="policy-text">This application does not collect, store, or share any personal data from users.</p>
+    <p class="policy-text">Talivo does not use advertising SDKs, does not sell personal information, and does not collect personal data for marketing or tracking purposes.</p>
   </div>
 
   <div class="policy-item">
     <div class="icon-wrap">
       <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
     </div>
-    <p class="policy-text">All user data (such as tasks or images) is stored locally on the user's device and is never transmitted to external servers.</p>
+    <p class="policy-text">Your tasks, images, and related app content are primarily stored on your device. If iCloud sync is enabled on your Apple account and supported by your device settings, your data may also be synchronized securely through Apple's iCloud services.</p>
   </div>
 
   <div class="policy-item">
     <div class="icon-wrap">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M20 17.5a4.5 4.5 0 0 0-1-8.9A6 6 0 0 0 7.5 7 4.5 4.5 0 0 0 8 16h12"/><path d="M12 12v8"/><path d="M9 17l3 3 3-3"/></svg>
     </div>
-    <p class="policy-text">This application uses third-party services such as Google AdMob to display advertisements. These services may collect anonymous data, including device identifiers, to deliver relevant ads.</p>
+    <p class="policy-text">Talivo does not operate its own backend for storing your app content. When iCloud is used, synchronization and storage are handled by Apple under your Apple account and Apple's applicable terms and privacy practices.</p>
   </div>
 
   <div class="policy-item">
     <div class="icon-wrap">
       <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
     </div>
-    <p class="policy-text">We do not control how third-party services collect or use data. Please refer to their privacy policies for more information.</p>
+    <p class="policy-text">This application does not include advertisements, subscription purchases, or premium membership systems in its current version. However, advertisements, premium features, or subscription options may be introduced in future updates. If such features are added, this Privacy Policy will be updated accordingly.</p>
   </div>
 
   <div class="policy-item">
     <div class="icon-wrap">
       <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
     </div>
-    <p class="policy-text">No personal information such as name, email, or contact information is collected by this application.</p>
+    <p class="policy-text">Talivo does not require you to create an account and does not directly collect personal information such as your name, email address, or contact details through the app.</p>
   </div>
 
   <div class="contact-block">
