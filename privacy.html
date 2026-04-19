@@ -46,6 +46,44 @@
       z-index: 0;
     }
 
+    /* ── Language Toggle ── */
+    .lang-toggle {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+      align-self: flex-end;
+      max-width: 680px;
+      width: 100%;
+    }
+
+    .lang-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .lang-btn:not(.active):hover {
+      background: var(--accent-light);
+      border-color: var(--accent-light);
+      color: var(--accent);
+    }
+
+    /* ── Card ── */
     .card {
       position: relative;
       z-index: 1;
@@ -225,15 +263,21 @@
 </head>
 <body>
 
+<!-- Language Toggle -->
+<div class="lang-toggle">
+  <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" id="btn-tr" onclick="setLang('tr')">TR</button>
+</div>
+
 <div class="card">
 
   <div class="app-badge">
     <svg viewBox="0 0 24 24"><path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z"/></svg>
-    Privacy Policy
+    <span id="badge-text">Privacy Policy</span>
   </div>
 
-  <h1>Your data, your <em>control.</em></h1>
-  <p class="subtitle">Last updated · April 2026</p>
+  <h1 id="heading">Your data, your <em>control.</em></h1>
+  <p class="subtitle" id="subtitle">Last updated · April 2026</p>
 
   <div class="divider"></div>
 
@@ -241,35 +285,35 @@
     <div class="icon-wrap">
       <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
     </div>
-    <p class="policy-text">Talivo does not use advertising SDKs, does not sell personal information, and does not collect personal data for marketing or tracking purposes.</p>
+    <p class="policy-text" id="p1">Talivo does not use advertising SDKs, does not sell personal information, and does not collect personal data for marketing or tracking purposes.</p>
   </div>
 
   <div class="policy-item">
     <div class="icon-wrap">
       <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
     </div>
-    <p class="policy-text">Your tasks, images, and related app content are primarily stored on your device. If iCloud sync is enabled on your Apple account and supported by your device settings, your data may also be synchronized securely through Apple's iCloud services.</p>
+    <p class="policy-text" id="p2">Your tasks, images, and related app content are primarily stored on your device. If iCloud sync is enabled on your Apple account and supported by your device settings, your data may also be synchronized securely through Apple's iCloud services.</p>
   </div>
 
   <div class="policy-item">
     <div class="icon-wrap">
       <svg viewBox="0 0 24 24"><path d="M20 17.5a4.5 4.5 0 0 0-1-8.9A6 6 0 0 0 7.5 7 4.5 4.5 0 0 0 8 16h12"/><path d="M12 12v8"/><path d="M9 17l3 3 3-3"/></svg>
     </div>
-    <p class="policy-text">Talivo does not operate its own backend for storing your app content. When iCloud is used, synchronization and storage are handled by Apple under your Apple account and Apple's applicable terms and privacy practices.</p>
+    <p class="policy-text" id="p3">Talivo does not operate its own backend for storing your app content. When iCloud is used, synchronization and storage are handled by Apple under your Apple account and Apple's applicable terms and privacy practices.</p>
   </div>
 
   <div class="policy-item">
     <div class="icon-wrap">
       <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
     </div>
-    <p class="policy-text">This application does not include advertisements, subscription purchases, or premium membership systems in its current version. However, advertisements, premium features, or subscription options may be introduced in future updates. If such features are added, this Privacy Policy will be updated accordingly.</p>
+    <p class="policy-text" id="p4">This application does not include advertisements, subscription purchases, or premium membership systems in its current version. However, advertisements, premium features, or subscription options may be introduced in future updates. If such features are added, this Privacy Policy will be updated accordingly.</p>
   </div>
 
   <div class="policy-item">
     <div class="icon-wrap">
       <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
     </div>
-    <p class="policy-text">Talivo does not require you to create an account and does not directly collect personal information such as your name, email address, or contact details through the app.</p>
+    <p class="policy-text" id="p5">Talivo does not require you to create an account and does not directly collect personal information such as your name, email address, or contact details through the app.</p>
   </div>
 
   <div class="contact-block">
@@ -277,14 +321,60 @@
       <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
     </div>
     <div>
-      <p class="contact-label">Questions? Contact us</p>
+      <p class="contact-label" id="contact-label">Questions? Contact us</p>
       <a href="mailto:softwareyokatali@gmail.com">softwareyokatali@gmail.com</a>
     </div>
   </div>
 
 </div>
 
-<footer>© 2026 Talivo · All rights reserved</footer>
+<footer id="footer">© 2026 Talivo · All rights reserved</footer>
+
+<script>
+  const translations = {
+    en: {
+      badge: 'Privacy Policy',
+      heading: 'Your data, your <em>control.</em>',
+      subtitle: 'Last updated · April 2026',
+      p1: 'Talivo does not use advertising SDKs, does not sell personal information, and does not collect personal data for marketing or tracking purposes.',
+      p2: "Your tasks, images, and related app content are primarily stored on your device. If iCloud sync is enabled on your Apple account and supported by your device settings, your data may also be synchronized securely through Apple's iCloud services.",
+      p3: "Talivo does not operate its own backend for storing your app content. When iCloud is used, synchronization and storage are handled by Apple under your Apple account and Apple's applicable terms and privacy practices.",
+      p4: 'This application does not include advertisements, subscription purchases, or premium membership systems in its current version. However, advertisements, premium features, or subscription options may be introduced in future updates. If such features are added, this Privacy Policy will be updated accordingly.',
+      p5: 'Talivo does not require you to create an account and does not directly collect personal information such as your name, email address, or contact details through the app.',
+      contactLabel: 'Questions? Contact us',
+      footer: '© 2026 Talivo · All rights reserved'
+    },
+    tr: {
+      badge: 'Gizlilik Politikası',
+      heading: 'Verileriniz, sizin <em>kontrolünüzde.</em>',
+      subtitle: 'Son güncelleme · Nisan 2026',
+      p1: "Talivo, reklam SDK'ları kullanmaz, kişisel bilgileri satmaz ve pazarlama ya da takip amaçlı kişisel veri toplamaz.",
+      p2: "Görevleriniz, resimleriniz ve uygulamayla ilgili diğer içerikler öncelikli olarak cihazınızda saklanır. Apple hesabınızda iCloud senkronizasyonu etkinleştirilmişse ve cihaz ayarlarınız bunu destekliyorsa, verileriniz Apple'ın iCloud hizmetleri aracılığıyla güvenli biçimde eşitlenebilir.",
+      p3: "Talivo, uygulama içeriklerinizi depolamak için kendi sunucularını işletmez. iCloud kullanıldığında, senkronizasyon ve depolama işlemleri Apple'ın hizmet koşulları ve gizlilik uygulamaları kapsamında Apple tarafından gerçekleştirilir.",
+      p4: 'Bu uygulama, mevcut sürümünde reklam, abonelik satın alma veya premium üyelik sistemi içermemektedir. Ancak gelecekteki güncellemelerde bu tür özellikler eklenebilir. Bu durumda Gizlilik Politikası da buna göre güncellenecektir.',
+      p5: 'Talivo, hesap oluşturmanızı gerektirmez ve uygulama aracılığıyla adınız, e-posta adresiniz veya iletişim bilgileriniz gibi kişisel verileri doğrudan toplamaz.',
+      contactLabel: 'Sorularınız için bize ulaşın',
+      footer: '© 2026 Talivo · Tüm hakları saklıdır'
+    }
+  };
+
+  function setLang(lang) {
+    const t = translations[lang];
+    document.getElementById('badge-text').textContent = t.badge;
+    document.getElementById('heading').innerHTML = t.heading;
+    document.getElementById('subtitle').textContent = t.subtitle;
+    document.getElementById('p1').textContent = t.p1;
+    document.getElementById('p2').textContent = t.p2;
+    document.getElementById('p3').textContent = t.p3;
+    document.getElementById('p4').textContent = t.p4;
+    document.getElementById('p5').textContent = t.p5;
+    document.getElementById('contact-label').textContent = t.contactLabel;
+    document.getElementById('footer').textContent = t.footer;
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-tr').classList.toggle('active', lang === 'tr');
+    document.documentElement.lang = lang;
+  }
+</script>
 
 </body>
 </html>
