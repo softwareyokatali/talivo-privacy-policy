@@ -46,6 +46,43 @@
       z-index: 0;
     }
 
+    /* ── Language Toggle ── */
+    .lang-toggle {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+      align-self: flex-end;
+      max-width: 680px;
+      width: 100%;
+    }
+
+    .lang-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .lang-btn:not(.active):hover {
+      background: var(--accent-light);
+      border-color: var(--accent-light);
+      color: var(--accent);
+    }
+
     .card {
       position: relative;
       z-index: 1;
@@ -237,15 +274,21 @@
 </head>
 <body>
 
+<!-- Language Toggle -->
+<div class="lang-toggle">
+  <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" id="btn-tr" onclick="setLang('tr')">TR</button>
+</div>
+
 <div class="card">
 
   <div class="app-badge">
     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-    Support
+    <span id="badge-text">Support</span>
   </div>
 
-  <h1>We're here to <em>help.</em></h1>
-  <p class="subtitle">If you need help with Talivo, feel free to reach out anytime. We're happy to assist.</p>
+  <h1 id="heading">We're here to <em>help.</em></h1>
+  <p class="subtitle" id="subtitle">If you need help with Talivo, feel free to reach out anytime. We're happy to assist.</p>
 
   <div class="divider"></div>
 
@@ -254,7 +297,7 @@
       <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
     </div>
     <div class="contact-info">
-      <span class="contact-label">Email us</span>
+      <span class="contact-label" id="contact-label">Email us</span>
       <a class="contact-email" href="mailto:softwareyokatali@gmail.com">softwareyokatali@gmail.com</a>
     </div>
   </div>
@@ -263,14 +306,51 @@
     <div class="note-icon">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
     </div>
-    <p>We usually respond within 24 hours.</p>
+    <p id="note-text">We usually respond within 24 hours.</p>
   </div>
 
-  <div class="copyright">&#169; 2026 Talivo</div>
+  <div class="copyright" id="copyright">&#169; 2026 Talivo</div>
 
 </div>
 
-<footer>All rights reserved</footer>
+<footer id="footer">All rights reserved</footer>
+
+<script>
+  const translations = {
+    en: {
+      badge: 'Support',
+      heading: "We're here to <em>help.</em>",
+      subtitle: "If you need help with Talivo, feel free to reach out anytime. We're happy to assist.",
+      contactLabel: 'Email us',
+      noteText: 'We usually respond within 24 hours.',
+      copyright: '© 2026 Talivo',
+      footer: 'All rights reserved'
+    },
+    tr: {
+      badge: 'Destek',
+      heading: 'Size yardımcı olmak için <em>buradayız.</em>',
+      subtitle: "Talivo ile ilgili herhangi bir konuda yardıma ihtiyaç duyarsanız bize istediğiniz zaman ulaşabilirsiniz.",
+      contactLabel: 'E-posta gönderin',
+      noteText: 'Genellikle 24 saat içinde yanıt veriyoruz.',
+      copyright: '© 2026 Talivo',
+      footer: 'Tüm hakları saklıdır'
+    }
+  };
+
+  function setLang(lang) {
+    const t = translations[lang];
+    document.getElementById('badge-text').textContent = t.badge;
+    document.getElementById('heading').innerHTML = t.heading;
+    document.getElementById('subtitle').textContent = t.subtitle;
+    document.getElementById('contact-label').textContent = t.contactLabel;
+    document.getElementById('note-text').textContent = t.noteText;
+    document.getElementById('copyright').textContent = t.copyright;
+    document.getElementById('footer').textContent = t.footer;
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-tr').classList.toggle('active', lang === 'tr');
+    document.documentElement.lang = lang;
+  }
+</script>
 
 </body>
 </html>
