@@ -29,7 +29,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 60px 20px 80px;
+      padding: 48px 16px 64px;
     }
 
     body::before {
@@ -46,23 +46,27 @@
       z-index: 0;
     }
 
-    /* ── Language Toggle ── */
-    .lang-toggle {
+    .wrapper {
       position: relative;
-      z-index: 2;
-      display: flex;
-      gap: 6px;
-      margin-bottom: 20px;
-      align-self: flex-end;
+      z-index: 1;
       max-width: 680px;
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* ── Language Toggle ── */
+    .lang-toggle {
+      display: flex;
+      gap: 8px;
     }
 
     .lang-btn {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 100px;
-      padding: 6px 18px;
+      padding: 7px 20px;
       font-family: 'DM Sans', sans-serif;
       font-size: 13px;
       font-weight: 500;
@@ -83,15 +87,13 @@
       color: var(--accent);
     }
 
+    /* ── Card ── */
     .card {
-      position: relative;
-      z-index: 1;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 24px;
-      max-width: 680px;
       width: 100%;
-      padding: 56px 60px 52px;
+      padding: 48px 44px 44px;
       box-shadow:
         0 1px 2px rgba(0,0,0,0.04),
         0 8px 32px rgba(0,0,0,0.06),
@@ -130,11 +132,11 @@
 
     h1 {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(32px, 5vw, 42px);
+      font-size: clamp(28px, 6vw, 42px);
       font-weight: 400;
       line-height: 1.15;
       color: var(--ink);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       letter-spacing: -0.01em;
     }
 
@@ -148,24 +150,23 @@
       color: var(--ink-soft);
       font-weight: 300;
       line-height: 1.6;
-      margin-bottom: 40px;
-      max-width: 440px;
+      margin-bottom: 36px;
     }
 
     .divider {
       height: 1px;
       background: linear-gradient(to right, var(--accent-light), var(--border), transparent);
-      margin-bottom: 40px;
+      margin-bottom: 36px;
     }
 
     .contact-block {
-      padding: 28px 32px;
+      padding: 22px 24px;
       background: var(--bg);
       border-radius: var(--radius);
       border: 1px solid var(--border);
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 18px;
       animation: fadeIn 0.5s ease 0.15s both;
     }
 
@@ -176,7 +177,7 @@
 
     .icon-wrap {
       flex-shrink: 0;
-      width: 46px; height: 46px;
+      width: 44px; height: 44px;
       border-radius: 12px;
       background: var(--accent);
       display: flex;
@@ -193,10 +194,15 @@
       stroke-linejoin: round;
     }
 
-    .contact-info { display: flex; flex-direction: column; gap: 4px; }
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
 
     .contact-label {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
       color: var(--ink-soft);
       text-transform: uppercase;
@@ -206,16 +212,17 @@
     .contact-email {
       color: var(--accent);
       text-decoration: none;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 500;
       letter-spacing: -0.01em;
       transition: opacity 0.2s;
+      word-break: break-all;
     }
 
     .contact-email:hover { opacity: 0.7; text-decoration: underline; }
 
     .note {
-      margin-top: 20px;
+      margin-top: 16px;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -249,8 +256,8 @@
     }
 
     .copyright {
-      margin-top: 40px;
-      padding-top: 28px;
+      margin-top: 36px;
+      padding-top: 24px;
       border-top: 1px solid var(--border);
       font-size: 13px;
       color: var(--ink-soft);
@@ -259,7 +266,7 @@
     }
 
     footer {
-      margin-top: 32px;
+      margin-top: 24px;
       font-size: 12px;
       color: #b8b3ad;
       text-align: center;
@@ -268,48 +275,55 @@
     }
 
     @media (max-width: 520px) {
-      .card { padding: 36px 28px 40px; }
+      body { padding: 32px 14px 56px; }
+      .card { padding: 32px 24px 36px; }
+      .contact-block { padding: 18px 18px; gap: 14px; }
+      .contact-email { font-size: 14px; }
     }
   </style>
 </head>
 <body>
 
-<!-- Language Toggle -->
-<div class="lang-toggle">
-  <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
-  <button class="lang-btn" id="btn-tr" onclick="setLang('tr')">TR</button>
-</div>
+<div class="wrapper">
 
-<div class="card">
-
-  <div class="app-badge">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-    <span id="badge-text">Support</span>
+  <!-- Language Toggle -->
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="btn-tr" onclick="setLang('tr')">TR</button>
   </div>
 
-  <h1 id="heading">We're here to <em>help.</em></h1>
-  <p class="subtitle" id="subtitle">If you need help with Talivo, feel free to reach out anytime. We're happy to assist.</p>
+  <div class="card">
 
-  <div class="divider"></div>
-
-  <div class="contact-block">
-    <div class="icon-wrap">
-      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-    </div>
-    <div class="contact-info">
-      <span class="contact-label" id="contact-label">Email us</span>
-      <a class="contact-email" href="mailto:softwareyokatali@gmail.com">softwareyokatali@gmail.com</a>
-    </div>
-  </div>
-
-  <div class="note">
-    <div class="note-icon">
+    <div class="app-badge">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      <span id="badge-text">Support</span>
     </div>
-    <p id="note-text">We usually respond within 24 hours.</p>
-  </div>
 
-  <div class="copyright" id="copyright">&#169; 2026 Talivo</div>
+    <h1 id="heading">We're here to <em>help.</em></h1>
+    <p class="subtitle" id="subtitle">If you need help with Talivo, feel free to reach out anytime. We're happy to assist.</p>
+
+    <div class="divider"></div>
+
+    <div class="contact-block">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <div class="contact-info">
+        <span class="contact-label" id="contact-label">Email us</span>
+        <a class="contact-email" href="mailto:softwareyokatali@gmail.com">softwareyokatali@gmail.com</a>
+      </div>
+    </div>
+
+    <div class="note">
+      <div class="note-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      </div>
+      <p id="note-text">We usually respond within 24 hours.</p>
+    </div>
+
+    <div class="copyright" id="copyright">&#169; 2026 Talivo</div>
+
+  </div>
 
 </div>
 
